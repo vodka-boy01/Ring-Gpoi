@@ -1,0 +1,32 @@
+--------------------------------------------------------
+start up
+--------------------------------------------------------
+
+il project work è il dettaglio 
+il power point è la presentazione 
+il file excel dei costi va aggiunto all'interno del project work 
+executive summary
+team: ripartizione delle quote societarie inteso come definizione dei ruoli imprenditoriali
+
+
+--------------------------------------------------------
+domande
+--------------------------------------------------------
+quali sono le domande che vi siete fatti?
+chi ha riscontrato il problema presentato nel power point?
+chi ha interesse per il prodotto esposto nella start-up
+
+idea 2:
+anello smart: 
+
+fare il grafico del VLCC
+implementazione del versioning nella progettazione dell'anello
+nell'utilizzo ideale va applicato in ambito medico per monitorare malati e anziani in cliniche ed ospedali.
+l'anello si connette ad un server su rete locale tramite dei router AP o dei ripetitori bluethoot dedicati 
+che permettono di monitorare la posizione di ogni individuo che indossa l'anello nello spazio dell'edificio.
+l'anello è in grado di rilevare cadute e segnalare la posizione dell'individuo tramite nome della stanza.
+è oltre in grado di monitorare il battito cardiaco inviando i dati su un server locale per creare un record annuale del paziente.
+implementa un innovativo GPS mignaturizzato che permette il monitoraggio in caso di fuga dell'individuo dal complesso medico. ingrandirlo su larga scala
+
+inoltre invia in caso di batteria scarica un allarme con priorità minore per sostituire il dispositivo.
+in caso di fuga dell'individuo l'anello invia un allarme di fuga al server centrale monitorato dalla sicurezza. la rete rileva la disconnesione dell'indirizzo ip dalla rete 
