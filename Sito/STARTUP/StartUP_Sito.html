@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Gabriele De Vito">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anello</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            color: white;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif; 
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .title {
+            font-size: 2em;
+            color: white;
+            user-select: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 20px;
+            width: 90%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 99;
+        }
+
+        .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 50px;
+        }
+
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: white;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .8s;
+        }
+
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background-color: black;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .box0 {
+			width: 100%;
+            max-width: 95%;
+            height: auto;
+            background-color: rgba(60, 60, 60, 0.1);
+            border: 2px solid white;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 2.3em auto;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+		}
+
+        .box1 {
+            width: 90%;
+            max-width: 600px;
+            height: auto;
+            background-color: black/*rgba(60, 60, 60, 0.1)*/;
+            border: 2px solid white;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 10em auto;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .typing {
+            font-size: 18px;
+            font-family: 'Roboto Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        .name_section {
+            font-size: 2em;
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        /* Per dispositivi mobili */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.5em;
+            }
+
+            header {
+                padding: 10px 20px;
+            }
+
+            .navigation a {
+                font-size: 0.9em;
+                margin-left: 20px;
+            }
+
+            .box {
+                height: auto;
+            }
+
+            .box0 {
+                width: calc(100% - 20px);
+                padding: 5px;
+            }
+
+            .box1 {
+                width: 95%;
+                margin: 5em auto;
+            }
+
+            .typing {
+                font-size: 16px;
+            }
+
+            .name_section {
+                font-size: 1.5em;
+            }
+        }
+		
+		.first_product{
+			font-size: 40px;
+			line-height: 1.125;
+			display: block;
+			font-weight: 600;
+			letter-spacing: .002em;
+			font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+			position: relative;
+		}	
+		
+		.link_button{
+			display: flex; /* Allinea i pulsanti orizzontalmente */
+			justify-content: center; /* Centra i pulsanti */
+			gap: 10px; /* Spazio tra i pulsanti */
+		}
+		
+		.button_scopri{
+			display: block;
+			text-decoration: none;
+			font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+			font-size: 17px; /* Font size ridotto */
+			font-weight: 500;
+			color: white;
+			background-color: rgb(212, 175, 55);
+			border-radius: 900px;
+			text-align: center;
+			padding: 7px 15px; /* Ridotto il padding */
+			width: auto; /* Impostato width a 'auto' */
+			max-width: 120px; /* Imposta una larghezza massima per renderlo più stretto */
+			border: solid 2px rgb(212, 175, 55);
+			z-index: 4;
+		}
+		
+		.button_acquista{
+			display: block;
+			text-decoration: none;
+			font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+			font-size: 17px; /* Font size ridotto */
+			font-weight: 500;
+			color: white;
+			background-color: none;
+			border-radius: 900px;
+			text-align: center;
+			padding: 7px 15px; /* Ridotto il padding */
+			width: auto; /* Impostato width a 'auto' */
+			max-width: 120px; /* Imposta una larghezza massima per renderlo più stretto */
+			border: solid 2px rgb(212, 175, 55);
+			z-index: 4;
+		}
+		
+		.img_hring {
+			display: flex;
+			justify-content: center; 
+			align-items: center; 
+			height: 500px; 
+			margin: -150px auto 10px auto;
+		}
+
+		.img_hring img {
+			max-width: 100%; 
+			height: auto; 
+			width: 1000px;
+		}
+
+        .img_homering{
+            display: flex;
+            position: relative;
+			justify-content: center; 
+			align-items: center; 
+			height: 500px; 
+			margin: 0px auto;
+        }
+
+        .img_homering img {
+			max-width: 100%; 
+			height: 450px; 
+			width: 800px;
+		}
+		
+		.firs_product_desc{
+			font-size: 50px;
+			position: relative;
+			left: 65px;
+            font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+		}
+
+        #desc_hring{
+            background-color: rgb(29, 31, 33);
+            color: white;
+        }
+
+        #img_hring_desc {
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            height: 600px;
+            width: 1190px;
+            margin: 0 auto; 
+            margin-left: 60px; 
+            border-radius: 30px;
+        }
+
+        #desc_hring_text{
+            display: flex;
+            gap: 200px;
+            position: relative;
+            margin: auto 200px auto;
+        }
+
+        .desc_hring_text_p{
+            color:rgb(136, 136, 139);
+            display: block;
+            font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            font-size: 21px;
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 0.200;
+            line-height: 28px;
+            text-size-adjust: 100%;
+            unicode-bidi: isolate;
+            width: 391px;
+            height: 290px;
+        }
+
+        #desc_homering_text{
+            display: flex;
+            gap: 200px;
+            position: relative;
+            margin: auto 200px auto;
+        }
+        strong {
+            font-weight: bold;
+            color: white;
+        }
+
+        #contact {
+            padding: 30px 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        form input, form textarea {
+            width: 600px;
+            max-width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #send{
+            height: auto;
+            max-width: 1000px;
+            width: 622px;
+        }
+
+        #h2Contatti {
+            display: block;
+            font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            color: white;
+            font-size: 40px;
+            padding-top: 3%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box0">
+            <header>
+                <h1 class="title">B-Ring</h1>
+                <nav class="navigation">
+                    <a href="#bio">Bio</a>
+                    <a href="#dispositivi">Dispositivi</a>
+                    <a href="#">App</a>
+                    <a href="#contact">Contatti</a>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <!-- Testo dinamico -->
+    <div id="bio" class="box1">
+        <div class="typing"></div> 
+    </div>
+
+    <script>
+        const text = "Nati dall'esigenza di dover incrementare la sicurezza.\nVolti a fare sempre il nostro meglio nelle nostre tecnologie.\nDediti alla ricerca di nuovi sistemi che siano utili\n allo sviluppo sociale e privato.Offriamo prodotti di qualità\n orientati a segmenti di mercato di sicurezza e confòrt.\n Design accattivanti, moderni e di facile utilizzo,\n con queste particolarità noi puntiamo ad essere utilizzabili\nda chiunque indossi i nostri B-Ring.";
+        const typingElement = document.querySelector(".typing");
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                const char = text.charAt(index);
+                if (char === '\n') {
+                    typingElement.innerHTML += '<br>';
+                } else {
+                    typingElement.innerHTML += char;
+                }
+                index++;
+                setTimeout(typeText, 20); 
+            }
+        }
+
+        window.onload = typeText;
+    </script>
+
+    <div align="center" id = "dispositivi"><h2 class="first_product">H-Ring Kit</h2></div>
+		<div class = "img_hring">
+            <img src = "Testo del paragrafo.png"></img>
+        </div>
+	<div class="link_button">
+		<a href="#desc_hring" class="button_scopri">Scopri di più</a>
+		<a href="#" class="button_acquista">Acquista</a>
+	</div>
+
+    <div class = "img_homering">
+        <img src = "Elegante. Preciso. (3).png"></img>
+    </div>
+    <div class="link_button">
+		<a href="#desc_hring" class="button_scopri">Scopri di più</a>
+		<a href="#" class="button_acquista">Acquista</a>
+	</div>
+    
+	<div id = "desc_hring">
+		<h1 class = "firs_product_desc"><br>Le tecnologie più moderne.</h1> 
+        <img id="img_hring_desc" src="Testo del paragrafo (3).png"></img>
+        <span><br><br><br><br></span>
+    </div>
+
+    <div id = "desc_hring_text">
+        <p class = "desc_hring_text_p"><br>Realizzato con materiali resistenti<br>l’H-Ring Kit rappresenta l’apice dell’innovazione tecnologica nel campo dei dispositivi smart indossabili. Progettato per durare nel tempo, questo <strong>anello intelligente</strong> combina <strong>robustezza e leggerezza</strong>, garantendo <strong>comfort e funzionalità senza compromessi.</strong></p>
+        <p class = "desc_hring_text_p"><br>Ogni dettaglio dell’B-Ring Kit è stato progettato con cura, dai sensori di precisione alle finiture eleganti, rendendolo non solo un accessorio tecnologico ma anche un elemento di design <strong>moderno e sofisticato.</strong></p>
+    </div>
+
+    <div id = "desc_homering_text">
+        <p class = "desc_hring_text_p">Immagina un piccolo, ma potentissimo puntatore integrato direttamente nel tuo anello. Discreto, ergonomico, e incredibilmente funzionale, è posizionato sulla parte superiore dell'Home-Ring per garantire la massima <strong>precisione e comodità.</strong> Questo puntatore non è solo un'estensione della tua mano: <strong><br>è il tuo nuovo strumento per interagire con il mondo digitale.</strong></p>
+    </div>
+
+    <section id="contact">
+        <h2 id="h2Contatti">Contattaci</h2>
+        <form>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <input id="send" type="submit" value="Invia">
+        </form>
+    </section>
+</body>
+</html>
